@@ -1,24 +1,11 @@
 const express = require("express");
 const pokemonRouter = express.Router();
-let jsonData = require("../data/pokemonData.json");
+const { get_all_pokemon, get_one_pokemon, get_info_one_pokemon } = require("../controllers/pokemonController");
 
-// 1.Get all pokemon:
-pokemonRouter.get("/", (req, res) => {
-  res.json(jsonData);
-});
+pokemonRouter.get("/", get_all_pokemon);
 
-// 2.Get one pokemon:
-pokemonRouter.get("/:id", (req, res) => {
-  const { id } = req.params;
-  const findSinglePokemon = jsonData.find((x) => x.id == id);
-  res.json(findSinglePokemon);
-});
+pokemonRouter.get("/:id", get_one_pokemon);
 
-// 3.Get info from a pokemon
-pokemonRouter.get("/:id/:info", (req, res) => {
-  const { id, info } = req.params;
-  const findSinglePokemon = jsonData.find((x) => x.id == id);
-  res.json(findSinglePokemon[info]);
-});
+pokemonRouter.get("/:id/:info", get_info_one_pokemon);
 
 module.exports = pokemonRouter;

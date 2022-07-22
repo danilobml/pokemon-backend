@@ -1,0 +1,15 @@
+@host = http://localhost:3000/game
+
+POST {{host}}/save
+Content-Type: application/json
+
+{
+    "my_pokemon": "fodidon",
+    "enemy": "chupapika",
+    "winner": "chupapika",
+    "user_won": "false"
+}
+
+###
+
+GET {{host}}/leaderboard
